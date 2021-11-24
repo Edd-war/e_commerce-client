@@ -10,6 +10,7 @@ export default function LoginForm(props) {
     const { showRegisterForm, onCloseModal } = props;
     const [loading, setLoading] = useState(false);
     const { login } = useAuth();
+    // console.log(auth); ESTE MENSAJE DE CONSOLA ES EL QUE COMPRUEBA EL TOKEN ACTIVO EN EL LOCALSTORAGE POR LA SESIÓN ACTIVA, auth vino de la línea anterior pero se quito por que no se necesita mas que para verificar el token
 
     const formik = useFormik({
         initialValues: initialValues(),
