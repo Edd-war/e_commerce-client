@@ -9,8 +9,7 @@ import { loginApi } from '../../../api/user';
 export default function LoginForm(props) {
     const { showRegisterForm, onCloseModal } = props;
     const [loading, setLoading] = useState(false);
-    const auth = useAuth();
-    console.log(auth);
+    const { login } = useAuth();
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -20,8 +19,9 @@ export default function LoginForm(props) {
             const response = await loginApi(formData);
             // console.log(response);
             if (response?.jwt) {
-                console.log(response);
+                // console.log(response);
                 // console.log('Login exitoso');
+                login(response.jwt);
                 onCloseModal();
             }
             else {
