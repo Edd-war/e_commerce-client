@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
+import { registerApi } from '../../../api/user';
 
 export default function RegisterForm(props) {
     const { showLoginForm } = props;
@@ -10,7 +11,8 @@ export default function RegisterForm(props) {
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
         onSubmit: (formData) => {
-            console.log(formData);
+            // console.log(formData);
+            registerApi(formData)
         }
     });
 
@@ -47,7 +49,7 @@ export default function RegisterForm(props) {
             />
             
             <Form.Input 
-              fluid icon='email' 
+              fluid icon='user' 
               iconPosition='left' 
               placeholder='Correo electrónico' 
               type="email"
@@ -57,7 +59,7 @@ export default function RegisterForm(props) {
             />
             
             <Form.Input 
-              fluid icon='password' 
+              fluid icon='user' 
               iconPosition='left' 
               placeholder='Contraseña' 
               type="password"
