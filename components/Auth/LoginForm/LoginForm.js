@@ -3,15 +3,29 @@ import { Form, Button } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import { loginApi } from '../../../api/user';
 
 export default function LoginForm(props) {
-    const { showRegisterForm } = props;
+    const { showRegisterForm, onCloseModal } = props;
+    const [loading, setLoading] = useState(false);
 
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: validationSchema(),
         onSubmit: async (formData) => {
-            console.log(formData);
+            setLoading(true);
+            const response = await loginApi(formData);
+            // console.log(response);
+            if (response?.jwt) {
+                console.log(response);
+                // console.log('Login exitoso');
+                onCloseModal();
+            }
+            else {
+                // console.log('Error al registrar el usuario');
+                toast.error('Error al iniciar sesión');
+            }
+            setLoading(false);
         }
     });
 
@@ -37,7 +51,7 @@ export default function LoginForm(props) {
                     Registrarse
                 </Button>
                 <div>
-                    <Button className="submit" type="submit">
+                    <Button className="submit" type="submit" loading={loading}>
                         Iniciar Sesión
                     </Button>
                     <Button type="button">
