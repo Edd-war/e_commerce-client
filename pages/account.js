@@ -5,6 +5,7 @@ import { getMeApi } from '../api/user';
 import useAuth from '../hooks/useAuth';
 import ChangeNameForm from '../components/Account/ChangeNameForm';
 import ChangeEmailForm from '../components/Account/ChangeEmailForm';
+import ChangePasswordForm from '../components/Account/ChangePasswordForm/ChangePasswordForm';
 
 export default function Account() {
     const [user, setUser] = useState(undefined);
@@ -43,7 +44,16 @@ function Configuracion(props) {
                   logout={logout} 
                   setReloadUser={setReloadUser}
                 />
-                <ChangeEmailForm user={user} logout={logout} setReloadUser={setReloadUser}/>
+                <ChangeEmailForm 
+                  user={user} 
+                  logout={logout} 
+                  setReloadUser={setReloadUser}
+                />
+                <ChangePasswordForm
+                  user={user}
+                  logout={logout}
+                  // setReloadUser={setReloadUser} NO SE PUEDE PONER PORQUE NO SE PUEDE HACER UN SETSTATE EN UN COMPONENTE HIJO DE UN COMPONENTE HIJO
+                />
             </div>
         </div>
     );
