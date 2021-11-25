@@ -34,14 +34,12 @@ export default function Account() {
 function Configuracion(props) {
     const {user} = props;
     return (
-        <BasicLayout className="account">
-            <div className="account__configuration">
-                <div className="title">Configuración</div>
-                <div className="data">
-                    <ChangeNameForm user={user}/>
-                </div>
+        <div className="account__configuration">
+            <div className="title">Configuración</div>
+            <div className="data">
+                <ChangeNameForm user={user}/>
             </div>
-        </BasicLayout>
+        </div>
     );
 }
 
