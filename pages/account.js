@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Icon } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import BasicLayout from '../layouts/BasicLayout';
 import { getMeApi } from '../api/user';
@@ -28,7 +29,12 @@ export default function Account() {
     // console.log(auth);
     return (
         <BasicLayout className="account">
-            <Configuracion user={user} logout={logout} setReloadUser={setReloadUser} />
+            <Configuracion 
+                user={user} 
+                logout={logout} 
+                setReloadUser={setReloadUser} 
+            />
+            <Addresses />
         </BasicLayout>
     );
 }
@@ -59,3 +65,16 @@ function Configuracion(props) {
     );
 }
 
+function Addresses(){
+    return (
+        <div className="account__addresses">
+            <div className="title">
+                Direcciones
+                <Icon name="plus" link />
+            </div>
+            <div className="data">
+                <p>Lista de direcciones</p>
+            </div>
+        </div>
+    );
+}
