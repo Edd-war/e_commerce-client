@@ -121,7 +121,7 @@ export async function updatePasswordApi(idUser, formData, logout) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify({password: formData.password})
         };
         const result = await authFetch(url, params, logout);
         return result ? result : null;
