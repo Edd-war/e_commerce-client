@@ -7,14 +7,17 @@ import { createAddressApi } from '../../../api/address';
 import { toast } from 'react-toastify';
 
 export default function AddressForm(props) {
-    const { setShowModal, setReloadAddresses } = props;
+    const { setShowModal, setReloadAddresses, newAddress, address } = props;
     const [loading, setLoading] = useState(false);
     const {auth, logout} = useAuth();
     const formik = useFormik({
-        initialValues: initialValues(),
+        initialValues: initialValues(address),
         validationSchema: validationSchema(),
         onSubmit: (formData) => {
             createAddress(formData);
+            newAddress 
+            ? createAddress(formData) 
+            : updateAddress(formData);
         }    
     });
 
@@ -37,6 +40,11 @@ export default function AddressForm(props) {
         }
         setLoading(false);
     }
+
+    const updateAddress = async (formData) => {
+        console.log("Actualizando la dirección");
+    }
+
 
     return (
         <Form onSubmit={formik.handleSubmit}>
@@ -131,24 +139,24 @@ export default function AddressForm(props) {
             </Form.Group>
             <div className="actions">
                 <Button type="submit" className="submit" loading={loading}>
-                    Guardar Dirección
+                    {newAddress ? "Nueva dirección" : "Editar dirección"}
                 </Button>
             </div>
         </Form>
     );
 }
 
-function initialValues() {
+function initialValues(address) {
     return {
-        title: "",
-        name: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
-        country: "",
-        phone: "",
-        mobile: ""
+        title:      address?.title      || "",
+        name:       address?.name       || "",
+        address:    address?.address    || "",
+        city:       address?.city       || "",
+        state:      address?.state      || "",
+        zip:        address?.zip        || "",
+        country:    address?.country    || "",
+        phone:      address?.phone      || "",
+        mobile:     address?.mobile     || ""
     }
 }
 

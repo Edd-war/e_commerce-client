@@ -74,13 +74,15 @@ function Addresses(){
     const [formModal, setFormModal] = useState(null);
     const [reloadAddresses, setReloadAddresses] = useState(false);
 
-    const openModal = (title) => {
+    const openModal = (title, address) => {
         setShowModal(true);
         setTitleModal(title);
         setFormModal(
             <AddressForm 
                 setShowModal={setShowModal} 
                 setReloadAddresses={setReloadAddresses}
+                newAddress={address ? false : true}
+                address={address || {}}
             />
         );
     }
@@ -93,7 +95,11 @@ function Addresses(){
                 <Icon name="plus" link onClick={() => openModal("Agregar Dirección")} />
             </div>
             <div className="data">
-                <AddressList reloadAddresses={reloadAddresses} setReloadAddresses={setReloadAddresses} />
+                <AddressList 
+                    reloadAddresses={reloadAddresses} 
+                    setReloadAddresses={setReloadAddresses}
+                    openModal={openModal}    
+                />
             </div>
 
             <BasicModal show={showModal} setShow={setShowModal} title={titleModal}>

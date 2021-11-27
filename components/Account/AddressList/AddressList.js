@@ -5,7 +5,7 @@ import { getAddressesApi, deleteAddressApi } from '../../../api/address';
 import useAuth from '../../../hooks/useAuth';
 
 export default function AddressList(props) {
-    const { reloadAddresses, setReloadAddresses} = props;
+    const { reloadAddresses, setReloadAddresses, openModal } = props;
     const [addresses, setAddresses] = useState([]);
     const {auth, logout} = useAuth();
 
@@ -30,7 +30,12 @@ export default function AddressList(props) {
                 <Grid>
                     {map(addresses, (address) => (
                         <Grid.Column key={address.id} mobile={16} tablet={8} computer={4}>
-                            <Address address={address} logout={logout} setReloadAddresses={setReloadAddresses} />
+                            <Address 
+                                address={address} 
+                                logout={logout} 
+                                setReloadAddresses={setReloadAddresses} 
+                                openModal={openModal}
+                            />
                         </Grid.Column>
                     ))}
                 </Grid>
@@ -41,7 +46,7 @@ export default function AddressList(props) {
         
 
 function Address(props) {
-    const { address, logout, setReloadAddresses } = props;
+    const { address, logout, setReloadAddresses, openModal } = props;
     const [loadingDelete, setLoadingDelete] = useState(false);
 
     const deleteAddress= async () => {
@@ -67,7 +72,7 @@ function Address(props) {
             <p>{address.nobile}</p>
 
             <div className="actions">
-                <Button primary>Editar</Button>
+                <Button primary onClick={() => openModal(`Editar: ${address.title}`, address)}>Editar</Button>
                 <Button negative type="submit" onClick={deleteAddress} loading={loadingDelete}>Eliminar</Button>
             </div>
         </div>
