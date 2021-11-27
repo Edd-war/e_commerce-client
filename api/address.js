@@ -7,7 +7,7 @@ export async function createAddressApi(address, logout) {
         const url = `${BASE_PATH}/addresses`;  
         const params = {
             method: "POST",
-            Headers: {
+            headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(address),

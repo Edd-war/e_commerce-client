@@ -6,8 +6,10 @@ export async function authFetch(url, params, logout) {
         logout();
     } else {
         if(hasExpiredToken(token)){
+            // console.log("Token has expired");
             logout();
         } else {
+            // console.log("Token is valid");
             const paramsTemp = {
                 ...params,
                 headers: {
@@ -18,8 +20,9 @@ export async function authFetch(url, params, logout) {
 
             try {
                 const response = await fetch(url, paramsTemp);
-                const result = await response.json();
-                return result;
+                // const result = await response.json();
+                // console.log(response);
+                return response;
             } catch (error) {
                 return error;
                 
