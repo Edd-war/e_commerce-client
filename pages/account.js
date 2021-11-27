@@ -9,7 +9,7 @@ import ChangeEmailForm from '../components/Account/ChangeEmailForm';
 import ChangePasswordForm from '../components/Account/ChangePasswordForm/ChangePasswordForm';
 import BasicModal from '../components/Modal/BasicModal';
 import AddressForm from '../components/Account/AddressForm';
-import ListAddress from '../components/Account/AddressList';
+import AddressList from '../components/Account/AddressList';
 
 export default function Account() {
     const [user, setUser] = useState(undefined);
@@ -72,11 +72,17 @@ function Addresses(){
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("");
     const [formModal, setFormModal] = useState(null);
+    const [reloadAddresses, setReloadAddresses] = useState(false);
 
     const openModal = (title) => {
         setShowModal(true);
         setTitleModal(title);
-        setFormModal(<AddressForm setShowModal={setShowModal}/>);
+        setFormModal(
+            <AddressForm 
+                setShowModal={setShowModal} 
+                setReloadAddresses={setReloadAddresses}
+            />
+        );
     }
 
 
@@ -87,7 +93,7 @@ function Addresses(){
                 <Icon name="plus" link onClick={() => openModal("Agregar Dirección")} />
             </div>
             <div className="data">
-                <ListAddress />
+                <AddressList reloadAddresses={reloadAddresses} setReloadAddresses={setReloadAddresses} />
             </div>
 
             <BasicModal show={showModal} setShow={setShowModal} title={titleModal}>

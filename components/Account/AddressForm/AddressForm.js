@@ -7,7 +7,7 @@ import { createAddressApi } from '../../../api/address';
 import { toast } from 'react-toastify';
 
 export default function AddressForm(props) {
-    const { setShowModal } = props;
+    const { setShowModal, setReloadAddresses } = props;
     const [loading, setLoading] = useState(false);
     const {auth, logout} = useAuth();
     const formik = useFormik({
@@ -29,6 +29,7 @@ export default function AddressForm(props) {
         console.log(response);
         if(response.status === 200) {
             toast.success("Dirección creada correctamente");
+            setReloadAddresses(true);
             formik.resetForm();
             setShowModal(false);
         } else {
