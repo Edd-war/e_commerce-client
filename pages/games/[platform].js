@@ -5,6 +5,7 @@ import { size } from 'lodash';
 import BasicLayout from '../../layouts/BasicLayout';
 import { getGamesPlatformApi, getTotalGamesPlatformApi } from '../../api/game';
 import GamesList from '../../components/GamesList';
+import Pagination from '../../components/Pagination';
 
 const limitPerPage = 10;
 
@@ -30,7 +31,8 @@ export default function Platform() {
                 const response = await getGamesPlatformApi(
                     query.platform, 
                     limitPerPage, 
-                    0
+                    // getStartItem(query.page)
+                    getStartItem()
                 );
                 // console.log(response);
                 setGames(response);
@@ -57,6 +59,15 @@ export default function Platform() {
             {games && size(games) > 0 && (
                 <GamesList games={games} />
             )}
+            {totalGames ? (
+                <Pagination 
+                    totalGames={totalGames} 
+                    page={query.page
+                        ? parseInt(query.page)
+                        : 1
+                    }
+                    limitPerPage={limitPerPage} />
+            ) : null}
         </BasicLayout>
     );
 }
