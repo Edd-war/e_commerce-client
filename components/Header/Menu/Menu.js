@@ -27,7 +27,7 @@ export default function MenuWeb() {
         (async()=>{
             const response = await getPlatformsApi(logout);
             setPlatforms(response || []);
-            console.log(response);
+            // console.log(response);
         })();
     }, []);
 
