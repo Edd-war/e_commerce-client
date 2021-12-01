@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
+import GameInfo from '../GameInfo';
 
 export default function GameTabs(props) {
     const { game } = props;
@@ -9,15 +10,7 @@ export default function GameTabs(props) {
             menuItem: 'Intofmación',
             render: () => (
                 <Tab.Pane>
-                    <h1>Info Game</h1>
-                </Tab.Pane>
-            )
-        },
-        {
-            menuItem: 'Comentarios',
-            render: () => (
-                <Tab.Pane>
-                    <h1>Comentarios</h1>
+                    <GameInfo game={game} />
                 </Tab.Pane>
             )
         },
