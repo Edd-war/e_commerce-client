@@ -87,13 +87,13 @@
     
         &-btn.ui.button {
           position: relative;
-          width: 300px;
+          width: 250px;
           background-color: $primary !important;
           color: $font-light !important;
           font-size: 18px;
           padding: 19px 0;
-          left: -20px;
-          transition: 0.2s;
+          left: -30px;
+          transition: 0.4s;
     
           &:hover {
             left: -10px;

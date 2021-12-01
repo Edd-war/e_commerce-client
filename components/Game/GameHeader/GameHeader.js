@@ -39,8 +39,8 @@ function Info (props) {
                 <div className="game-header__buy-price">
                     <p>Precio: ${price}</p>
                     <div className="game-header__buy-price-actions">
-                        <p>Descuento: {discount}%</p>
-                        <p>Ahorras: ${(price * discount / 100)}</p>
+                        <p>Descuento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/> {discount}%</p>
+                        <p>Ahorras:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>${(price * discount / 100)}</p>
                     </div>
                 </div>
                 <Button className="game-header__buy-btn">Comprar por: ${price - (price * discount / 100)}</Button>
