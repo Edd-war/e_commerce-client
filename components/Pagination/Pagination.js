@@ -17,7 +17,7 @@ export default function Pagination(props) {
     }
 
     return (
-        <div>
+        <div className="pagination">
             <PaginationSU
                 defaultActivePage={page}
                 totalPages={totalPages}
