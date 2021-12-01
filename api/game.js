@@ -1,4 +1,3 @@
-import { result } from "lodash";
 import { BASE_PATH } from "../utils/constants";
 
 export async function getLastGamesApi(limit){
