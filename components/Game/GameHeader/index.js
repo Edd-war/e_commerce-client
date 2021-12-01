@@ -1,1 +1,1 @@
-import { default } from './GameHeader.js';
+export { default } from './GameHeader.js';
