@@ -47,7 +47,7 @@ function Game(props) {
     // console.log(game.url);
     return (
         <Grid.Column className="games-list__game">
-            <Link href={`/${game.url}`}>
+            <Link href={`/games/${game.url}`}>
                 <a>
                     <div className="games-list__game-poster">
                         <Image src={game.poster.url} alt={game.title} />

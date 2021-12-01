@@ -25,7 +25,7 @@ export default function MenuWeb() {
 
     useEffect(() => {
         (async()=>{
-            const response = await getPlatformsApi(logout);
+            const response = await getPlatformsApi();
             setPlatforms(response || []);
             // console.log(response);
         })();
