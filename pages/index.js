@@ -7,7 +7,7 @@ import GamesList from "../components/GamesList";
 
 export default function Home() {
     const [games, setGames] = useState(null);
-    console.log(games);
+    // console.log(games);
 
     useEffect(() => {
         (async () => {
