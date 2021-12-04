@@ -3,6 +3,7 @@ import { Grid, Image, Icon, Button, GridColumn } from 'semantic-ui-react';
 import { size } from 'lodash';
 import classNames from 'classnames';
 import useAuth from '../../../hooks/useAuth';
+import useCart from '../../../hooks/useCart';
 import { isFavoriteApi, addFavoriteApi, deleteFavoriteApi } from '../../../api/favorite';
 
 export default function GameHeader(props) {
@@ -24,10 +25,11 @@ export default function GameHeader(props) {
 
 function Info (props) {
     const { game } = props;
-    const { title, summary, price, discount } = game;
+    const { title, summary, price, discount, url } = game;
     const [isFavorite, setIsFavorite] = useState(false);
     const [reloadFavorite, setReloadFavorite] = useState(false);
     const { auth, logout } = useAuth();
+    const { addProductCart } = useCart();
     // console.log(isFavorite);
 
     useEffect(() => {
@@ -92,7 +94,12 @@ function Info (props) {
                     </div>
                 </div>
                 {/* Hasta este punto la siguiente línea sigue marcando warning, supongo que es por no definir la acción del boton, eso más adelante */}
-                <Button className="game-header__buy-btn" onClick={null}>Adquirir por: $ {price - price * (discount / 100)}.00 MXN</Button>
+                <Button 
+                    className="game-header__buy-btn" 
+                    onClick={() => addProductCart(url)}
+                >
+                    Adquirir por: $ {price - price * (discount / 100)}.00 MXN
+                </Button>
             </div>
         </>
     );
