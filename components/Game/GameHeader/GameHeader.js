@@ -3,7 +3,7 @@ import { Grid, Image, Icon, Button, GridColumn } from 'semantic-ui-react';
 import { size } from 'lodash';
 import classNames from 'classnames';
 import useAuth from '../../../hooks/useAuth';
-import { isFavoriteApi } from '../../../api/favorite';
+import { isFavoriteApi, addFavoriteApi } from '../../../api/favorite';
 
 export default function GameHeader(props) {
     const { game } = props;
@@ -26,8 +26,9 @@ function Info (props) {
     const { game } = props;
     const { title, summary, price, discount } = game;
     const [isFavorite, setIsFavorite] = useState(false);
+    const [reloadFavorite, setReloadFavorite] = useState(false);
     const { auth, logout } = useAuth();
-    console.log(isFavorite);
+    // console.log(isFavorite);
 
     useEffect(() => {
         const fetchIsFavorite = async () => {
@@ -37,12 +38,16 @@ function Info (props) {
             : setIsFavorite(false);
         };
         fetchIsFavorite();
+        setIsFavorite(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [game.id]); // si el juego cambia, se ejecuta la función de nuevo, para que se actualice el estado. ESTA ES LA PARTE SENSIBLE DEL USE EFFECT
+    }, [game, reloadFavorite]); // si el juego cambia, se ejecuta la función de nuevo, para que se actualice el estado. ESTA ES LA PARTE SENSIBLE DEL USE EFFECT
     
     
-    const addFavorite = () => {
-        console.log('Añadir a favoritos');
+    const addFavorite = async () => {
+        if(auth){
+            await addFavoriteApi(auth.idUser, game.id, logout);
+            setReloadFavorite(true);
+        }
     }
 
     const deleteFavorite = () => {
