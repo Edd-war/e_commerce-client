@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import AuthContext from '../context/AuthContext';
 import CartContext from '../context/CartContext';
 import { setToken, getToken, removeToken } from '../api/token';
-import { getProductsCart, addProductCart } from '../api/cart';
+import { getProductsCart, addProductCart, countProductsCart } from '../api/cart';
 import "../scss/global.scss"
 import 'semantic-ui-css/semantic.min.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,6 +16,8 @@ export default function MyApp({ Component, pageProps }) {
 
     const [auth, setAuth] = useState(undefined);
     const [reloadUser, setReloadUser] = useState(false);
+    const [totalProdcuctsCart, setTotalProdcuctsCart] = useState(0);
+    const [reloadCart, setReloadCart] = useState(false);
     const router = useRouter();
     // console.log(auth);
 
@@ -63,10 +65,17 @@ export default function MyApp({ Component, pageProps }) {
         [auth]
     );
 
+    useEffect(() => {
+        setTotalProdcuctsCart(countProductsCart());
+        setReloadCart(false);
+    }, [reloadCart, auth]);
+
+
     const addProdcuct = (product) => {
         // const token = getToken();
         if(auth){
             addProductCart(product);
+            setReloadCart(true);
         }else{
             toast.warning("Debes iniciar sesión para agregar productos al carrito");
         }
@@ -75,13 +84,14 @@ export default function MyApp({ Component, pageProps }) {
 
     const cartData = useMemo(
         () => ({
-            productsCart: 0,
+            productsCart: totalProdcuctsCart,
             addProductCart: (product) => addProdcuct(product),
             removeProductCart: () => {},
             getProductsCart: getProductsCart,
             removeProdcutsCart: () => {},
         }),
-        []
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [totalProdcuctsCart]
     );
 
 
