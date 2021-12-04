@@ -41,6 +41,8 @@ function Search() {
             router.push(`/search?q=${searchStr}`);
         }
         setLoad(true);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchStr]);
 
     // console.log(router.query.q);
