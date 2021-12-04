@@ -82,7 +82,8 @@ function Info (props) {
                         <p>Ahorras:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>${(price * discount / 100)}</p>
                     </div>
                 </div>
-                <Button className="game-header__buy-btn">Comprar por: ${price - (price * discount / 100)}</Button>
+                {/* Hasta este punto la siguiente línea sigue marcando warning, supongo que es por no definir la acción del boton, eso más adelante */}
+                <Button className="game-header__buy-btn" onClick={null}>Adquirir por: $ {price - price * (discount / 100)}.00 MXN</Button>
             </div>
         </>
     );
