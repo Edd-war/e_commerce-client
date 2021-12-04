@@ -62,7 +62,7 @@ export async function searchGamesApi(search){
         const url = `${BASE_PATH}/games?_q=${search}`;
         const response = await fetch(url);
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
         return result;
     }
     catch(error){
