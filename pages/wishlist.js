@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { size } from 'lodash';
 import BasicLayout from '../layouts/BasicLayout';
+import { getFavoritesApi } from '../api/favorite';
+import useAuth from '../hooks/useAuth';
 
 export default function WishList() {
+    const [games, setGames] = useState(null);
+    const { auth, logout } = useAuth();
+
+    useEffect(() => {
+        (async () => {
+            const response=await getFavoritesApi(auth.idUser, logout);
+            // console.log(response);
+            setGames(response);
+         })();
+    }, []);
+
     return (
         <BasicLayout className="wishlist">
             <div className="wishlist__block">
