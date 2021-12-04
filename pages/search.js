@@ -21,7 +21,7 @@ export default function Search() {
             if(size(q) > 0) {
                 const data = await searchGamesApi(q);
                 if(size(data) > 0) {
-                    console.log(data);
+                    // console.log(data);
                     setGames(data);
                 } else {
                     setGames(null);

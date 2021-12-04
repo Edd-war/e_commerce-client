@@ -5,12 +5,14 @@ import BasicLayout from '../layouts/BasicLayout';
 import { getFavoritesApi } from '../api/favorite';
 import useAuth from '../hooks/useAuth';
 import GameList from '../components/GamesList';
+import useCart from '../hooks/useCart';
 
 export default function WishList() {
     const [games, setGames] = useState(null);
     const { auth, logout } = useAuth();
 
-    console.log(games);
+    // console.log(games);
+    // console.log(useCart());
 
     useEffect(() => {
         const fetchFavorites = async () => {
@@ -24,7 +26,7 @@ export default function WishList() {
                     gamesList.push(data.game);
                 });
                 setGames(gamesList);
-                console.log(gamesList);
+                // console.log(gamesList);
             } else {
                 setGames([]);
             }
