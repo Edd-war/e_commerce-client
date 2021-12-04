@@ -1,7 +1,8 @@
 .games-list {
-    padding: 20px;
     &__game{
+        padding: 20px;
         &:hover{
+            // padding: 20px; ANIMACIÓN QUE DESPLAZA EL ELEMENTO 20 PX ABAJO
             background-color: #f5f5f5;
             opacity: 0.8;
         }

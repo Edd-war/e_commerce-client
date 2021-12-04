@@ -88,7 +88,7 @@ function Info (props) {
                     <p>Precio sugerido: $ {price}.00 MXN</p>
                     <div className="game-header__buy-price-actions">
                         <p>Descuento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>{discount}%</p>
-                        <p>Ahorras:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>$ {price * (discount / 100)}.00 MXN</p>
+                        <p>Ahorras:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>$ {(price * (discount / 100).toFixed(2))} MXN</p>
                     </div>
                 </div>
                 {/* Hasta este punto la siguiente línea sigue marcando warning, supongo que es por no definir la acción del boton, eso más adelante */}
