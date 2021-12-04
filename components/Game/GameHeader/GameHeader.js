@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Image, Icon, Button, GridColumn } from 'semantic-ui-react';
 import { size } from 'lodash';
+import classNames from 'classnames';
+import useAuth from '../../../hooks/useAuth';
+import { isFavoriteApi } from '../../../api/favorite';
 
 export default function GameHeader(props) {
     const { game } = props;
@@ -22,13 +25,51 @@ export default function GameHeader(props) {
 function Info (props) {
     const { game } = props;
     const { title, summary, price, discount } = game;
-    // console.log(title);
+    const [isFavorite, setIsFavorite] = useState(false);
+    const { auth, logout } = useAuth();
+    // console.log(isFavorite);
 
+    useEffect(() => {
+        (async () => {
+            await isFavoriteApi(auth.idUser, game.id, logout).then(result => {
+                console.log(result);
+                (size(result) > 0)
+                    ? setIsFavorite(true) 
+                    : setIsFavorite(false);
+                console.log(isFavorite);
+            });
+        })();
+    }, [game.id]); // si el juego cambia, se ejecuta la función de nuevo, para que se actualice el estado. ESTA ES LA PARTE SENSIBLE DEL USE EFFECT
+    
+    
+    const addFavorite = () => {
+        console.log('Añadir a favoritos');
+    }
+
+    const deleteFavorite = () => {
+        console.log('Eliminar de favoritos');
+    }
+    
     return (
         <>
             <div className="game-header__title">
                 <h1>{title}</h1>
-                <Icon name="heart outline" link />
+                <Icon 
+                    name={
+                        isFavorite 
+                            ? "heart" 
+                            : "heart outline"
+                    } 
+                    className={classNames({
+                        like: isFavorite,
+                    })}
+                    link 
+                    onClick={
+                        isFavorite 
+                            ? deleteFavorite 
+                            : addFavorite
+                    }
+                />
             </div>
             <div className="game-header__delivery">Entrega de 24 a 48 horas</div>
             <div 
