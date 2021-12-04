@@ -78,7 +78,7 @@
               }
     
               &:last-of-type {
-                font-size: 40px;
+                font-size: 30px;
                 color: $primary;
               }
             }
@@ -87,11 +87,11 @@
     
         &-btn.ui.button {
           position: relative;
-          width: 250px;
+          width: 280px;
           background-color: $primary !important;
           color: $font-light !important;
           font-size: 18px;
-          padding: 19px 0;
+          padding: 20px 0;
           left: -30px;
           transition: 0.4s;
     
