@@ -27,18 +27,16 @@ function Info (props) {
     const { title, summary, price, discount } = game;
     const [isFavorite, setIsFavorite] = useState(false);
     const { auth, logout } = useAuth();
-    // console.log(isFavorite);
+    console.log(isFavorite);
 
     useEffect(() => {
-        (async () => {
-            await isFavoriteApi(auth.idUser, game.id, logout).then(result => {
-                console.log(result);
-                (size(result) > 0)
-                    ? setIsFavorite(true) 
-                    : setIsFavorite(false);
-                console.log(isFavorite);
-            });
-        })();
+        const fetchIsFavorite = async () => {
+            const result = await isFavoriteApi(auth.idUser, game.id, logout);
+            (size(result) > 0)
+            ? setIsFavorite(true) 
+            : setIsFavorite(false);
+        };
+        fetchIsFavorite();
     }, [game.id]); // si el juego cambia, se ejecuta la función de nuevo, para que se actualice el estado. ESTA ES LA PARTE SENSIBLE DEL USE EFFECT
     
     
