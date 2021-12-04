@@ -72,8 +72,8 @@ export default function MyApp({ Component, pageProps }) {
 
 
     const addProdcuct = (product) => {
-        // const token = getToken();
-        if(auth){
+        const token = getToken();
+        if(token){
             addProductCart(product);
             setReloadCart(true);
         }else{
