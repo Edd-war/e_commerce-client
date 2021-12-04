@@ -58,6 +58,7 @@ export default function MyApp({ Component, pageProps }) {
             logout,
             setReloadUser
         }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [auth]
     );
 
