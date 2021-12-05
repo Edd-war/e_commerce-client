@@ -30,7 +30,7 @@ function NotEmptyCart(props) {
     const [reloadCart, setReloadCart] = useState(false);
     const [address, setAddress] = useState(null);
     // console.log(productsData);
-    console.log(address);
+    // console.log(address);
 
     useEffect(() => {
         (async()=> {
