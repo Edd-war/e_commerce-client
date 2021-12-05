@@ -39,3 +39,23 @@ export function countProductsCart () {
         return size(cart);
      }
 }
+
+export function removeProductCart (product) {
+    const cart = getProductsCart();
+    
+    const productFound = includes(cart, product);
+    if(productFound){
+        remove(cart, (item) => {
+            return item === product;
+        });
+        localStorage.removeItem(CART);
+        localStorage.setItem(CART, cart);
+        toast.success('Producto eliminado del carrito');
+    } else {
+        toast.warning('El producto no esta en el carrito');
+    }
+
+    if(size(cart) === 0){
+        localStorage.removeItem(CART);
+    }
+}

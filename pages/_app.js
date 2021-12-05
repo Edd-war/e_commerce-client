@@ -5,7 +5,12 @@ import { useRouter } from 'next/router';
 import AuthContext from '../context/AuthContext';
 import CartContext from '../context/CartContext';
 import { setToken, getToken, removeToken } from '../api/token';
-import { getProductsCart, addProductCart, countProductsCart } from '../api/cart';
+import { 
+    getProductsCart, 
+    addProductCart, 
+    countProductsCart,
+    removeProductCart,
+} from '../api/cart';
 import "../scss/global.scss"
 import 'semantic-ui-css/semantic.min.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -80,15 +85,24 @@ export default function MyApp({ Component, pageProps }) {
             toast.warning("Debes iniciar sesión para agregar productos al carrito");
         }
     }
-
+    
+    const removeProduct = (product) => {
+        const token = getToken();
+        if(token){
+            removeProductCart(product);
+            setReloadCart(true);
+        }else{
+            toast.warning("Debes iniciar sesión para agregar productos al carrito");
+        }
+    }
 
     const cartData = useMemo(
         () => ({
             productsCart: totalProdcuctsCart,
             addProductCart: (product) => addProdcuct(product),
-            removeProductCart: () => {},
             getProductsCart: getProductsCart,
-            removeProdcutsCart: () => {},
+            removeProductCart: (product) => removeProduct(product),
+            removeAllProdcutsCart: () => {},
         }),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [totalProdcuctsCart]

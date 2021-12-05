@@ -25,6 +25,7 @@ function EmptyCart() {
 function NotEmptyCart(props) {
     const { products } = props;
     const [productsData, setProductsData] = useState(null);
+    const [reloadCart, setReloadCart] = useState(false);
     // console.log(productsData);
 
     useEffect(() => {
@@ -35,12 +36,18 @@ function NotEmptyCart(props) {
                 productsTemp.push(data);
             }
             setProductsData(productsTemp);
-        })()
-    }, []);
+        })();
+        setReloadCart(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [reloadCart]);
 
     return (
         <BasicLayout className="empty-cart">
-            <SummaryCart products={productsData} />
+            <SummaryCart 
+                products={productsData} 
+                reloadCart={reloadCart}
+                setReloadCart={setReloadCart}    
+            />
         </BasicLayout>
     );
 }
