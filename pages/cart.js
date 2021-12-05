@@ -27,7 +27,9 @@ function NotEmptyCart(props) {
     const { products } = props;
     const [productsData, setProductsData] = useState(null);
     const [reloadCart, setReloadCart] = useState(false);
+    const [address, setAddress] = useState(null);
     // console.log(productsData);
+    console.log(address);
 
     useEffect(() => {
         (async()=> {
@@ -49,7 +51,7 @@ function NotEmptyCart(props) {
                 reloadCart={reloadCart}
                 setReloadCart={setReloadCart}    
             />
-            <AddressShipping />
+            <AddressShipping setAddress={setAddress} />
         </BasicLayout>
     );
 }
