@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Grid  } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
+import { map, size } from 'lodash';
 import BasicLayout from '../layouts/BasicLayout';
 import { getOrdersApi } from '../api/order';
 import useAuth from '../hooks/useAuth';
-import { result } from 'lodash';
+import Order from '../components/Orders/Order';
 
 export default function Orders() {
     const { auth, logout } = useAuth();
@@ -24,9 +25,32 @@ export default function Orders() {
             <div className="orders__block">
                 <div className="title">Mis Pedidos</div>
                 <div className="data">
-                    <p>Mis adquisiciones</p>
+                    {
+                        size(orders) === 0 ?
+                            <h2>No has adquirido juegos todavía</h2>
+                        :
+                            <OrderList orders={orders} />
+                    }
                 </div>
             </div>
         </BasicLayout>
+    );
+}
+
+function OrderList(props) {
+    const { orders } = props;
+    // console.log(orders);
+    return (
+        // <Order orders={orders[0]} />
+        <Grid>
+            {
+                map(orders, (order) => (
+                    // console.log(order);
+                    <Grid.Column mobile={16} tablet={8} computer={4}>
+                        <Order order={order} />
+                    </Grid.Column>
+                ))
+            }
+        </Grid>
     );
 }
