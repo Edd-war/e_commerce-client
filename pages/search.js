@@ -5,6 +5,7 @@ import { size } from 'lodash';
 import BasicLayout from '../layouts/BasicLayout';
 import { searchGamesApi } from '../api/game';
 import GamesList from '../components/GamesList';
+import Seo from '../components/Seo';
 
 export default function Search() {
 
@@ -33,6 +34,9 @@ export default function Search() {
 
     return (
         <BasicLayout className="search">
+            <Seo 
+                title={`Buscando: ${q}`} 
+            />
             {!games && <Loader active inline='centered' />}
             {games && size(games) === 0 &&(
                 <div>

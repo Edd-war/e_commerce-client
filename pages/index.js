@@ -4,6 +4,7 @@ import { size } from "lodash";
 import BasicLayout from "../layouts/BasicLayout";
 import { getLastGamesApi } from "../api/game";
 import GamesList from "../components/GamesList";
+import Seo from "../components/Seo";
 
 export default function Home() {
     const [games, setGames] = useState(null);
@@ -22,6 +23,7 @@ export default function Home() {
 
     return ( 
         <BasicLayout className="home">
+            <Seo title="Start to Game" />
             {!games && <Loader active>Cargando...</Loader>}
             {games && size(games) === 0 && (
                 <div className="no-games">
