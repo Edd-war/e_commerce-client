@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   height: 100px;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
   background-color: $background-light;
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
 
@@ -12,15 +12,42 @@
 
   &__info {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+    padding: 0 10px;
+    .order-id {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .order-date {
+      font-size: 1rem;
+    }
+  }
 
-    // a {
-    //   height: 100%;
+  a {
+    height: 100%;
 
-    //   .ui.image {
-    //     height: 100%;
-    //     margin-right: 20px;
-    //   }
-    // }
+    .ui.image {
+      height: 100%;
+      margin-right: 20px;
+    }
+  }
 
+  &__other {
+    display: flex;
+    align-items: center;
+    // padding-right: 10px;
+
+    &-date {
+      margin: 0 20px 0 0;
+      width: 125px;
+    }
+
+    i {
+      padding-left: 20px;
+      color: $primary;
+    }
   }
 }

@@ -46,7 +46,7 @@ function OrderList(props) {
             {
                 map(orders, (order) => (
                     // console.log(order);
-                    <Grid.Column mobile={16} tablet={8} computer={4}>
+                    <Grid.Column mobile={16} tablet={8} computer={8}>
                         <Order order={order} />
                     </Grid.Column>
                 ))
