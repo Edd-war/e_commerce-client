@@ -3,6 +3,7 @@ import BasicLayout from '../layouts/BasicLayout';
 import { getGameByUrlApi } from '../api/game';
 import useCart from '../hooks/useCart';
 import SummaryCart from '../components/Cart/SummaryCart';
+import AddressShipping from '../components/Cart/AddressShipping';
 
 
 export default function Cart() {
@@ -48,6 +49,7 @@ function NotEmptyCart(props) {
                 reloadCart={reloadCart}
                 setReloadCart={setReloadCart}    
             />
+            <AddressShipping />
         </BasicLayout>
     );
 }
