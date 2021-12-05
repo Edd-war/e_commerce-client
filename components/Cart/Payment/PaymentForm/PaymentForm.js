@@ -14,6 +14,8 @@ export default function PaymentForm(props) {
     const stripe = useStripe();
     const elements = useElements();
     const { auth, logout } = useAuth();
+    const { removeAllProdcutsCart } = useCart();
+    const router = useRouter();
 
     const handleSubmit = async (event) => {
         event.preventDefault();          //EJEMPLO DE LA BUENA APLICACIÓN DE ESTÁNDARES, SON FÁCILES DE ADAPTAR A NUEVAS TECNOLOGÍAS, SE PRETENDE COMO SE RECOMIENDA QUE TODOS SIGAN TALES REGLAS
@@ -41,6 +43,8 @@ export default function PaymentForm(props) {
 
             if(size(responseResult) > 0) {
                 toast.success("Pago realizado con éxito");
+                removeAllProdcutsCart();
+                router.push('/orders');
             } else {
                 toast.error("Error al procesar el pago");
             }

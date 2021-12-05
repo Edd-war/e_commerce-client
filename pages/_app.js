@@ -10,6 +10,7 @@ import {
     addProductCart, 
     countProductsCart,
     removeProductCart,
+    removeAllProductsCart
 } from '../api/cart';
 import "../scss/global.scss"
 import 'semantic-ui-css/semantic.min.css'
@@ -102,7 +103,7 @@ export default function MyApp({ Component, pageProps }) {
             addProductCart: (product) => addProdcuct(product),
             getProductsCart: getProductsCart,
             removeProductCart: (product) => removeProduct(product),
-            removeAllProdcutsCart: () => {},
+            removeAllProdcutsCart: removeAllProductsCart,
         }),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [totalProdcuctsCart]
